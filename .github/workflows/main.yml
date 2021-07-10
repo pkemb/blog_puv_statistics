@@ -1,11 +1,11 @@
 # workflow name
 name: dump blog page view & unique visitor
 
-# master branch on push, auto run
+# master branch on schedule every Monday at 12 o'clock
 on:
   push:
-    branches:
-      - master
+  schedule:
+    - cron: '0 12 * * 1'
 
 jobs:
   build:
@@ -38,9 +38,14 @@ jobs:
         git config --global user.name 'pkemb'
         git config --global user.email 'pkemb@outlook.com'
 
-    - name: dump blog page view & unique visitor
+    - name: install run enviroment
       run: |
         sudo apt-get install libxml2-dev libxslt-dev
         pip install bs4
         pip install lxml==3.7.0
+
+    - name: dump blog page view & unique visitor
+      run: |
         python export_busuanzi_data.py
+        bash commit.sh
+
