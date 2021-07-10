@@ -40,6 +40,7 @@ jobs:
 
     - name: dump blog page view & unique visitor
       run: |
+        sudo apt-get install libxml2-dev libxslt-dev
         pip install bs4
         pip install lxml==3.7.0
         python export_busuanzi_data.py
