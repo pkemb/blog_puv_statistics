@@ -41,4 +41,5 @@ jobs:
     - name: dump blog page view & unique visitor
       run: |
         pip install bs4
+        pip install lxml==3.7.0
         python export_busuanzi_data.py
