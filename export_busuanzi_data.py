@@ -83,9 +83,9 @@ if __name__=='__main__':
     # write json to file
     if not os.path.exists(stat_file):
         with open(stat_file, 'a+') as f:
-            print("file " + stat_file + "create success!!!")
+            print("file " + stat_file + " create success!!!")
 
-    with open("page_puv_statistics.json", "r+") as f:
+    with open(stat_file, "r+") as f:
         value=f.read()
         if not value:
             stat_array = []
