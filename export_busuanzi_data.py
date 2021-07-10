@@ -10,12 +10,14 @@ import uuid
 import datetime
 import random
 import socket
+import os
 
 reload(sys)
 sys.setdefaultencoding('utf8')
 
 header={'Referer':'', 'cookie':''}
 busuanzi_url='http://busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback_1046609647591'
+stat_file="page_puv_statistics.json"
 
 def get_page_puv(url):
     header['Referer'] = url
@@ -69,16 +71,25 @@ if __name__=='__main__':
             page_puv = get_page_puv(url)
 
         page_puv['url'] = url
+        page_puv.pop('version')
         page_puv_array.append(page_puv)
 
     now = str(datetime.datetime.now())
     page_puv_statistics = {'time':now, 'page_puv':page_puv_array}
     #print(page_puv_statistics)
 
-    with open("page_puv_statistics.json", "rw") as f:
-        if not f.read():
+    # write json to file
+    if not os.path.exists(stat_file):
+        with open(stat_file, 'a+') as f:
+            print("file " + stat_file + "create success!!!")
+
+    with open("page_puv_statistics.json", "r+") as f:
+        value=f.read()
+        if not value:
             stat_array = []
         else:
-            stat_array = json.load(f)
+            stat_array = json.loads(value)['page_puv_statistics']
         stat_array.append(page_puv_statistics)
-        json.dump(stat_array, f)
+        f.seek(0)
+        f.truncate()
+        json.dump({'page_puv_statistics':stat_array}, f)
