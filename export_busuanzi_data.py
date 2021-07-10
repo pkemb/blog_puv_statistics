@@ -17,7 +17,6 @@ sys.setdefaultencoding('utf8')
 
 header={'Referer':'', 'cookie':''}
 busuanzi_url='http://busuanzi.ibruce.info/busuanzi?jsonpCallback=BusuanziCallback_1046609647591'
-stat_file="page_puv_statistics.json"
 
 def get_page_puv(url):
     header['Referer'] = url
@@ -77,6 +76,9 @@ if __name__=='__main__':
     now = str(datetime.datetime.now())
     page_puv_statistics = {'time':now, 'page_puv':page_puv_array}
     #print(page_puv_statistics)
+
+    # generate file name
+    stat_file="page_puv_statistics_" + str(now.year) + ".json"
 
     # write json to file
     if not os.path.exists(stat_file):
