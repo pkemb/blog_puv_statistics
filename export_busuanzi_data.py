@@ -73,8 +73,8 @@ if __name__=='__main__':
         page_puv.pop('version')
         page_puv_array.append(page_puv)
 
-    now = str(datetime.datetime.now())
-    page_puv_statistics = {'time':now, 'page_puv':page_puv_array}
+    now = datetime.datetime.now()
+    page_puv_statistics = {'time':str(now), 'page_puv':page_puv_array}
     #print(page_puv_statistics)
 
     # generate file name
