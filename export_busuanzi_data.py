@@ -75,5 +75,10 @@ if __name__=='__main__':
     page_puv_statistics = {'time':now, 'page_puv':page_puv_array}
     #print(page_puv_statistics)
 
-    with open("page_puv_statistics.json", "w") as f:
-        json.dump(page_puv_statistics, f)
+    with open("page_puv_statistics.json", "rw") as f:
+        if not f.read():
+            stat_array = []
+        else:
+            stat_array = json.load(f)
+        stat_array.append(page_puv_statistics)
+        json.dump(stat_array, f)
