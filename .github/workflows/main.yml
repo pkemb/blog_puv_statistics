@@ -40,7 +40,7 @@ jobs:
 
     - name: install run enviroment
       run: |
-        sudo apt-get install libxml2-dev libxslt-dev
+        sudo apt-get install libxml2-dev libxslt-dev jq
         pip install bs4
         pip install lxml==3.7.0
 
