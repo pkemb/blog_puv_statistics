@@ -114,4 +114,5 @@ if __name__=='__main__':
             stat_file_list.append(file)
 
     puv_stat = puv_statistical(stat_file_list)
+    puv_stat.export_site_puv_to_md('site_puv.md')
     puv_stat.export_page_pv_to_md('page_pv.md')
