@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python2
 #-*- coding: UTF-8 -*-
 
 import json
@@ -45,12 +45,13 @@ class site_puv_statistical:
     def __iter__(self):
         return self
 
-    def __next__(self):
+    def next(self):
         if self.count < len(self.page_puvs):
             result = self.page_puvs[self.count]
             self.count += 1
             return result
         else:
+            self.count = 0
             raise StopIteration
 
 # 所有的统计结果
@@ -108,7 +109,7 @@ class puv_statistical:
 
 if __name__=='__main__':
     stat_file_list = list()
-    for file in os.listdir():
+    for file in os.listdir(os.getcwd()):
         if file.startswith('page_puv_statistics_'):
             stat_file_list.append(file)
 

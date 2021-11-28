@@ -23,11 +23,6 @@ jobs:
       with:
         python-version: "2.7"
 
-    - name: Setup Python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.8"
-
     - name: Setup Deploy Private Key
       env:
         SECRETS_KEY: ${{ secrets.SECRETS_KEY }}
@@ -51,6 +46,6 @@ jobs:
     - name: dump blog page view & unique visitor
       run: |
         python export_busuanzi_data.py
-        python3 export_to_md.py
+        python export_to_md.py
         bash commit.sh
 
